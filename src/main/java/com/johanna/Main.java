@@ -40,4 +40,9 @@ public class Main {
         tileRepository.save(tile);
     }
 
+    @DeleteMapping("{tileId}")
+    public void deleteTile(@PathVariable("tileId") Integer id) {
+        tileRepository.deleteById(id);
+    }
+
 }
