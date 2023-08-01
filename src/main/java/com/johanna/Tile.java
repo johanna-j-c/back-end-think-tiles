@@ -1,10 +1,23 @@
 package com.johanna;
 
+import jakarta.persistence.*;
 import org.springframework.validation.ObjectError;
 
 import java.util.Objects;
 
+@Entity
 public class Tile {
+
+    @Id
+    @SequenceGenerator(
+            name = "tile_id_sequence",
+            sequenceName = "tile_id_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "tile_id_sequence"
+    )
     private Integer id;
     private String title;
     private String prompt;
@@ -38,7 +51,7 @@ public class Tile {
     }
 
     public String getPrompt() {
-
+        return prompt;
     }
 
     public void setPrompt(String prompt) {
@@ -48,9 +61,9 @@ public class Tile {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass( != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Tile tile = (Tile) o;
-        return Objects.equals(id, tile.id) && Objects.equals(title, tile.title)
+        return Objects.equals(id, tile.id) && Objects.equals(title, tile.title);
     }
 
     @Override
