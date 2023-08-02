@@ -8,7 +8,8 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("api/v1/tiles")
+@CrossOrigin("http://localhost:3000")
+@RequestMapping("/tiles")
 public class Main {
     private final TileRepository tileRepository;
 
