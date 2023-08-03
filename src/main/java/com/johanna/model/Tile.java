@@ -1,7 +1,6 @@
-package com.johanna;
+package com.johanna.model;
 
 import jakarta.persistence.*;
-import org.springframework.validation.ObjectError;
 
 import java.util.Objects;
 
