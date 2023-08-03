@@ -7,7 +7,7 @@ import com.johanna.repository.TileRepository;
 import java.util.List;
 
 @RestController
-//@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/tiles")
 
 public class TileController {
