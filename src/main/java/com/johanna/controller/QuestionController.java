@@ -73,8 +73,18 @@ public class QuestionController {
     return new ResponseEntity<>(question, HttpStatus.CREATED);
     }
 
+    @PutMapping("questions/{id}")
+    public ResponseEntity<Question> updateQuestion(@PathVariable("id") Integer id, @RequestBody Question questionRequest) {
+        Question question = questionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("QuestionId " + id + "not found"));
 
-    @DeleteMapping("{questionId}")
+        question.setTitle(questionRequest.getTitle());
+        question.setPrompt(questionRequest.getPrompt());
+
+        return new ResponseEntity<>(questionRepository.save(question), HttpStatus.OK);
+    }
+
+    @DeleteMapping("questions/{questionId}")
     public void deleteQuestion(@PathVariable("questionId") Integer id) {
         questionRepository.deleteById(id);
     }
