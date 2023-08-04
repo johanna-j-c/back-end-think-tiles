@@ -3,6 +3,7 @@ package com.johanna.model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Question {
@@ -21,6 +22,10 @@ public class Question {
     private String title;
     private String prompt;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private Teacher teacher;
+
     public Question(Integer id,
                 String title,
                 String prompt) {
@@ -28,6 +33,7 @@ public class Question {
         this.title = title;
         this.prompt = prompt;
     }
+
 
     public Question() {
 
@@ -78,4 +84,5 @@ public class Question {
                 ", prompt='" + prompt + '\'' +
                 '}';
     }
+
 }

@@ -2,7 +2,10 @@ package com.johanna.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.List;
+
 @Entity
 public class Teacher {
     @Id
@@ -76,4 +79,5 @@ public class Teacher {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }
