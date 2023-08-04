@@ -5,6 +5,12 @@ import jakarta.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Question {
 
@@ -24,6 +30,8 @@ public class Question {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "teacher_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Teacher teacher;
 
     public Question(Integer id,
@@ -32,6 +40,7 @@ public class Question {
         this.id = id;
         this.title = title;
         this.prompt = prompt;
+
     }
 
 
@@ -61,6 +70,14 @@ public class Question {
 
     public void setPrompt(String prompt) {
         this.prompt = prompt;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     @Override
