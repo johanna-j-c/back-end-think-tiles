@@ -3,6 +3,13 @@ package com.johanna.model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
+
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tile {
@@ -18,15 +25,22 @@ public class Tile {
             generator = "tile_id_sequence"
     )
     private Integer id;
-    private String title;
-    private String prompt;
+    private String value;
+    private Integer displayOrder;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "question_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Question question;
+
 
     public Tile(Integer id,
-                String title,
-                String prompt) {
+                String value,
+                Integer displayOrder) {
         this.id = id;
-        this.title = title;
-        this.prompt = prompt;
+        this.value = value;
+        this.displayOrder = displayOrder;
     }
 
     public Tile() {
@@ -41,20 +55,26 @@ public class Tile {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getValue() { return value; }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Integer getDisplayOrder() {
+        return displayOrder;
     }
 
-    public String getPrompt() {
-        return prompt;
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
-    public void setPrompt(String prompt) {
-        this.prompt = prompt;
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     @Override
@@ -62,20 +82,20 @@ public class Tile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tile tile = (Tile) o;
-        return Objects.equals(id, tile.id) && Objects.equals(title, tile.title);
+        return Objects.equals(id, tile.id) && Objects.equals(value, tile.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, prompt);
+        return Objects.hash(id, value, displayOrder);
     }
 
     @Override
     public String toString() {
         return "Tile{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", prompt='" + prompt + '\'' +
+                ", value='" + value + '\'' +
+                ", display order='" + displayOrder + '\'' +
                 '}';
     }
 }

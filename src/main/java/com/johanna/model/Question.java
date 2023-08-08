@@ -40,7 +40,6 @@ public class Question {
         this.id = id;
         this.title = title;
         this.prompt = prompt;
-
     }
 
 

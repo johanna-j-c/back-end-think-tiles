@@ -1,7 +1,7 @@
 package com.johanna.controller;
 
-import com.johanna.exception.ResourceNotFoundException;
 import com.johanna.model.Question;
+import com.johanna.exception.ResourceNotFoundException;
 import com.johanna.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +33,7 @@ public class QuestionController {
     @GetMapping("teachers/{teacherId}/questions")
     public ResponseEntity<List<Question>> getAllQuestionsByTeacherId(@PathVariable(value = "teacherId") Integer teacherId) {
     if (!teacherRepository.existsById(teacherId)) {
-        throw new ResourceNotFoundException("Not found Tutorial with id = " + teacherId);
+        throw new ResourceNotFoundException("Not found Teacher with id = " + teacherId);
     }
 
     List<Question> questions = questionRepository.findByTeacherId(teacherId);
@@ -68,7 +68,7 @@ public class QuestionController {
     Question question = teacherRepository.findById(teacherId).map(teacher -> {
         questionRequest.setTeacher(teacher);
         return questionRepository.save(questionRequest);
-    }).orElseThrow(() -> new ResourceNotFoundException("Not found Tutorial with id = " + teacherId));
+    }).orElseThrow(() -> new ResourceNotFoundException("Not found Teacher with id = " + teacherId));
 
     return new ResponseEntity<>(question, HttpStatus.CREATED);
     }
