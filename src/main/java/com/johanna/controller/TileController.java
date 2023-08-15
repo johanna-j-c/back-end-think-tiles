@@ -14,8 +14,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
-//@RequestMapping("/tiles")
+//@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://front-end-think-tiles.onrender.com")
 @RequestMapping("/")
 
 public class TileController {
