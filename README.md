@@ -16,6 +16,9 @@ designed workspaces, streamlining the lesson
 planning process and enhancing overall teaching 
 efficiency.
 
+## Demo Video
+https://github.com/johanna-j-c/back-end-think-tiles/assets/101949856/e64176ef-d442-48a4-ad5c-51658d86199a
+
 ## About the Backend
 
 The Think Tiles backend is developed using Java 
@@ -45,6 +48,8 @@ Follow these steps to set up the Think Tiles backend on your local machine:
 1. Clone this repository.
 2. Navigate to the project directory: `cd think-tiles-backend`
 3. Install dependencies: `mvn install`
+
+Note: See [Think Tiles Front-end Repo](https://github.com/johanna-j-c/front-end-think-tiles) for details on Front-end setup.
 
 ## Usage
 
